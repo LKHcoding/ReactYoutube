@@ -18,13 +18,14 @@ function Subscribe(props) {
 
     let subscribedVariable = {
       userTo: props.userTo,
-      userFrom: localStorage.getItem("userId"),
+      userFrom: props.userFrom,
+      // userFrom: localStorage.getItem("userId"),
     };
 
     Axios.post("/api/subscribe/subscribed", subscribedVariable).then(
       (response) => {
         if (response.data.success) {
-          console.log(response.data);
+          // console.log(response.data);
           setSubscribed(response.data.subscribed);
         } else {
           alert("내 구독 정보를 받아오지 못했습니다.");
@@ -36,7 +37,8 @@ function Subscribe(props) {
   const onSubscribe = () => {
     let subscribeVariable = {
       userTo: props.userTo,
-      userFrom: localStorage.getItem("userId"),
+      userFrom: props.userFrom,
+      // userFrom: localStorage.getItem("userId"),
     };
 
     //이미 구독중이라면
