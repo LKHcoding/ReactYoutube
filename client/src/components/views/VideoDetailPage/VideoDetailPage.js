@@ -7,12 +7,12 @@ import Comment from "./Sections/Comment";
 
 function VideoDetailPage(props) {
   const [VideoDetail, setVideoDetail] = useState([]);
+  const variable = { videoId: props.match.params.videoId };
+
   useEffect(() => {
-    const variable = { videoId: props.match.params.videoId };
     Axios.post("/api/video/getVideoDetail", variable).then((response) => {
       if (response.data.success) {
         setVideoDetail(response.data.VideoDetail);
-        // console.log(response.data.VideoDetail);
       } else {
         alert("비디오 정보 가져오기 실패");
       }
@@ -49,7 +49,7 @@ function VideoDetailPage(props) {
               ></List.Item.Meta>
             </List.Item>
             {/* 댓글부분 */}
-            <Comment />
+            <Comment postId={variable.videoId} />
           </div>
         </Col>
         <Col lg={6} xs={24}>
