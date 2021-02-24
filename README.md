@@ -4,7 +4,7 @@
 
 사용한 Youtube 클론 웹사이트 구현 프로젝트
 
-<!-- <img style="max-width: 80%; height: auto;" src="https://drive.google.com/uc?export=view&id=1JsZC2kTQaasDwcuA4bsqlLymI0EmzJ-U" > -->
+<img style="max-width: 80%; height: auto;" src="https://drive.google.com/uc?export=view&id=1JsZC2kTQaasDwcuA4bsqlLymI0EmzJ-U" >
 
 <br />
 
