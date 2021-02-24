@@ -1,7 +1,9 @@
 import Axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { useSelector } from "react-redux";
+import SingleComment from "./SingleComment";
+import ReplyComment from "./ReplyComment";
 
 function Comment(props) {
   const videoId = props.postId;
@@ -17,6 +19,12 @@ function Comment(props) {
   const onSubmit = (event) => {
     event.preventDefault();
 
+    if (user.userData && !user.userData.isAuth) {
+      alert("로그인이 필요합니다.");
+      props.history.push("/login");
+      return;
+    }
+
     const variables = {
       content: commentValue,
       writer: user.userData._id,
@@ -25,7 +33,9 @@ function Comment(props) {
 
     Axios.post("/api/comment/saveComment", variables).then((response) => {
       if (response.data.success) {
-        console.log(response.data.result);
+        // console.log(response.data.result);
+        setCommentValue("");
+        props.refreshFunction(response.data.result);
       } else {
         alert("코멘트를 저장하지 못했습니다.");
       }
@@ -35,9 +45,29 @@ function Comment(props) {
   return (
     <div>
       <br />
-      <p> Replies</p>
+      <p>{props.commentLists.length} Replies</p>
       <hr />
+
       {/* Comment Lists */}
+      {props.commentLists &&
+        props.commentLists.map(
+          (comment, index) =>
+            !comment.responseTo && (
+              <React.Fragment key={index}>
+                <SingleComment
+                  refreshFunction={props.refreshFunction}
+                  comment={comment}
+                  postId={videoId}
+                />
+                <ReplyComment
+                  refreshFunction={props.refreshFunction}
+                  commentLists={props.commentLists}
+                  postId={videoId}
+                  parentCommentId={comment._id}
+                />
+              </React.Fragment>
+            )
+        )}
 
       {/* Root Comment Form */}
 
@@ -46,7 +76,11 @@ function Comment(props) {
           style={{ width: "100%", borderRadius: "5px" }}
           onChange={handleClick}
           value={commentValue}
-          placeholder="코멘트를 작성해 주세요"
+          placeholder={
+            user.userData && !user.userData.isAuth
+              ? "로그인이 필요합니다."
+              : "코멘트를 작성해 주세요"
+          }
         ></textarea>
 
         <br />

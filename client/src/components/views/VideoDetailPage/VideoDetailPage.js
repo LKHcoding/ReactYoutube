@@ -4,9 +4,12 @@ import Axios from "axios";
 import SideVideo from "./Sections/SideVideo";
 import Subscribe from "./Sections/Subscribe";
 import Comment from "./Sections/Comment";
+import LikeDislikes from "./Sections/LikeDislikes";
 
 function VideoDetailPage(props) {
   const [VideoDetail, setVideoDetail] = useState([]);
+
+  const [Comments, setComments] = useState([]);
   const variable = { videoId: props.match.params.videoId };
 
   useEffect(() => {
@@ -17,7 +20,19 @@ function VideoDetailPage(props) {
         alert("비디오 정보 가져오기 실패");
       }
     });
+
+    Axios.post("/api/comment/getComments", variable).then((response) => {
+      if (response.data.success) {
+        setComments(response.data.comments);
+      } else {
+        alert("코멘트 정보를 가져오는 것을 실패 했습니다.");
+      }
+    });
   }, []);
+
+  const refreshFunction = (newComment) => {
+    setComments(Comments.concat(newComment));
+  };
 
   if (VideoDetail.writer) {
     return (
@@ -34,6 +49,11 @@ function VideoDetailPage(props) {
 
             <List.Item
               actions={[
+                <LikeDislikes
+                  video
+                  userId={localStorage.getItem("userId")}
+                  videoId={variable.videoId}
+                />,
                 VideoDetail.writer._id !== localStorage.getItem("userId") ? (
                   <Subscribe
                     userTo={VideoDetail.writer._id}
@@ -48,8 +68,14 @@ function VideoDetailPage(props) {
                 description={VideoDetail.description}
               ></List.Item.Meta>
             </List.Item>
+
             {/* 댓글부분 */}
-            <Comment postId={variable.videoId} />
+            <Comment
+              history={props.history}
+              refreshFunction={refreshFunction}
+              commentLists={Comments}
+              postId={variable.videoId}
+            />
           </div>
         </Col>
         <Col lg={6} xs={24}>
