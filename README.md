@@ -2,10 +2,11 @@
 
 ### React.js + MongoDB + Express.js + Node.js (Mern stack)을
 
-사용한 Youtube 클론 웹사이트 구현 프로젝트
+### 사용한 Youtube 클론 웹사이트 구현 프로젝트
 
-<img style="max-width: 80%; height: auto;" src="https://drive.google.com/uc?export=view&id=1JsZC2kTQaasDwcuA4bsqlLymI0EmzJ-U" >
+<img style="max-width: 100%; height: auto;" src="https://drive.google.com/uc?export=view&id=1e6HS0YDW7m9KOS2uJ7_D-rxN-LG3Rx_h" >
 
+<br />
 <br />
 
 ---
