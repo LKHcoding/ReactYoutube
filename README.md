@@ -33,8 +33,10 @@ To use this application, :heavy_check_mark:
 
     1. make dev.js file inside config folder
     2. put mongoDB info into dev.js file
-    3. Type  " npm install " inside the root directory  ( Download Server Dependencies )
+    3. Type " npm install " inside the root directory  ( Download Server Dependencies )
     4. Type " npm install " inside the client directory ( Download Front-end Dependencies )
+    5. Type " npm run backend  " inside the root directory
+    6. Type " npm start " inside the client directory
 
 ---
 
@@ -46,9 +48,9 @@ To use this application, :heavy_check_mark:
 
 <!-- <img src="http://img.shields.io/badge/-Vercel-black?style=flat&logo=vercel&logoColor=white"> -->
 
-### Other Languages I know
+<!-- ### Other Languages I know
 
-<img src="http://img.shields.io/badge/-Java-F89820?style=flat&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/-C%20&%20C%23-659ad2?style=flat&logo=c sharp&logoColor=ffffff">
+<img src="http://img.shields.io/badge/-Java-F89820?style=flat&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/-C%20&%20C%23-659ad2?style=flat&logo=c sharp&logoColor=ffffff"> -->
 
 <!-- <img src="https://img.shields.io/badge/-Python-black?style=flat&logo=python&logoColor=white">   -->
 
